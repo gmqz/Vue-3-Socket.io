@@ -4,8 +4,6 @@ import Listener from './listener';
 import Emitter from './emitter';
 import SocketIO from 'socket.io-client';
 
-const version = 3;
-
 export default class VueSocketIO {
 
     /**
@@ -29,13 +27,8 @@ export default class VueSocketIO {
      * @param Vue
      */
     install(Vue){
-        if (version >= +Vue.version.split('.')[0]) {
-            Vue.config.globalProperties.$socket = this.io;
-            Vue.config.globalProperties.$vueSocketIo = this;
-        } else {
-            Vue.prototype.$socket = this.io;
-            Vue.prototype.$vueSocketIo = this;
-        }
+        Vue.config.globalProperties.$socket = this.io;
+        Vue.config.globalProperties.$vueSocketIo = this;
 
         Vue.mixin(Mixin);
 
